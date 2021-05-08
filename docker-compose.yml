@@ -5,6 +5,8 @@ services:
     restart: always
     ports:
       - ${MYSQL_PORT}:3306
+    networks:
+      - mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_ROOT_HOST: '%'
@@ -13,3 +15,7 @@ services:
       - mysql-data:/var/lib/mysql:delegated
 volumes:
   mysql-data:
+networks:
+  mysql:
+    name: mysql
+    driver: bridge
